@@ -1,5 +1,6 @@
 package sample.cafekiosk.unit;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import sample.cafekiosk.unit.beverage.Americano;
 import sample.cafekiosk.unit.beverage.Latte;
@@ -13,15 +14,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 class CafeKioskTest {
 
     @Test
-    void add_manual_test() {
-        CafeKiosk cafeKiosk = new CafeKiosk();
-        cafeKiosk.add(new Americano());
-
-        System.out.println(">>> 담긴 음료 수 : " + cafeKiosk.getBeverages().size());
-        System.out.println(">>> 담긴 음료 : " + cafeKiosk.getBeverages().get(0).getName());
-    }
-
-    @Test
     void add() {
         CafeKiosk cafeKiosk = new CafeKiosk();
         cafeKiosk.add(new Americano());
@@ -29,6 +21,16 @@ class CafeKioskTest {
         assertThat(cafeKiosk.getBeverages()).hasSize(1);
         assertThat(cafeKiosk.getBeverages().get(0).getName()).isEqualTo("아메리카노");
         assertThat(cafeKiosk.getBeverages().get(0).getPrice()).isEqualTo(4000);
+    }
+
+    @DisplayName("음료 1개를 추가하면 주문 목록에 담긴다.")
+    @Test
+    void add_manual_test() {
+        CafeKiosk cafeKiosk = new CafeKiosk();
+        cafeKiosk.add(new Americano());
+
+        System.out.println(">>> 담긴 음료 수 : " + cafeKiosk.getBeverages().size());
+        System.out.println(">>> 담긴 음료 : " + cafeKiosk.getBeverages().get(0).getName());
     }
 
     @Test
@@ -78,8 +80,10 @@ class CafeKioskTest {
         assertThat(cafeKiosk.getBeverages()).isEmpty();
     }
 
+    @DisplayName("주문 목록에 담긴 상품들의 총 금액을 계산할 수 있다.")
     @Test
     void calculateTotalPrice() {
+        // given
         CafeKiosk cafeKiosk = new CafeKiosk();
         Americano americano = new Americano();
         Latte latte = new Latte();
@@ -87,8 +91,10 @@ class CafeKioskTest {
         cafeKiosk.add(americano);
         cafeKiosk.add(latte);
 
+        // when
         int totalPrice = cafeKiosk.calculateTotalPrice();
 
+        // then
         assertThat(totalPrice).isEqualTo(8500);
     }
 
