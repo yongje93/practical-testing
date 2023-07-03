@@ -3,6 +3,7 @@ package sample.cafekiosk.spring.domain.product;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 
@@ -14,7 +15,8 @@ import static sample.cafekiosk.spring.domain.product.ProductSellingStatus.*;
 import static sample.cafekiosk.spring.domain.product.ProductType.HANDMADE;
 
 @ActiveProfiles("test")
-@SpringBootTest
+//@SpringBootTest
+@DataJpaTest
 class ProductRepositoryTest {
 
     @Autowired
