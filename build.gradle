@@ -17,7 +17,7 @@ configurations {
         extendsFrom annotationProcessor
     }
     asciidoctorExt
-}가
+}
 
 repositories {
     mavenCentral()
